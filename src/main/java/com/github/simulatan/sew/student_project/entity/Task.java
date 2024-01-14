@@ -1,5 +1,6 @@
 package com.github.simulatan.sew.student_project.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,9 +14,14 @@ public class Task {
 	@Column(name = "hours_worked")
 	private int hoursWorked;
 	@ManyToOne
-	@JoinColumn(name = "project_id")
+	@JoinColumn(name = "project_id", referencedColumnName = "id")
+	@JsonIgnoreProperties({"tasks"})
 	private Project project;
+
 	@ManyToOne
+	@JoinColumn(name = "student_clazz", referencedColumnName = "clazz")
+	@JoinColumn(name = "student_catalog_number", referencedColumnName = "catalog_number")
+	@JsonIgnoreProperties({"tasks"})
 	private Student student;
 
 	public Long getId() {

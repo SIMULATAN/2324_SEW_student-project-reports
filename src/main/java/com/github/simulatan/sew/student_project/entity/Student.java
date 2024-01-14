@@ -32,6 +32,7 @@ public class Student {
 			@JoinColumn(name="id")
 		}
 	)
+	@JsonIgnoreProperties({"students"})
 	private Set<Project> projects;
 
 	public StudentId getStudentId() {

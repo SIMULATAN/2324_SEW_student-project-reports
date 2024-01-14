@@ -24,8 +24,22 @@ public class Project {
 	)
 	@JsonIgnoreProperties({"projects"})
 	private Set<Teacher> teachers;
-	//private Set<Task> tasks;
-	//private Set<Student> students;
+	@JsonIgnoreProperties({"project", "student"})
+	@OneToMany(mappedBy = "project")
+	private Set<Task> tasks;
+	@JsonIgnoreProperties({"projects", "tasks"})
+	@ManyToMany
+	@JoinTable(
+		name="task",
+		joinColumns = {
+			@JoinColumn(name="id")
+		},
+		inverseJoinColumns = {
+			@JoinColumn(name="student_clazz", referencedColumnName = "clazz"),
+			@JoinColumn(name="student_catalog_number", referencedColumnName = "catalog_number")
+		}
+	)
+	private Set<Student> students;
 
 	public Long getId() {
 		return id;
@@ -57,5 +71,21 @@ public class Project {
 
 	public void setTeachers(Set<Teacher> teachers) {
 		this.teachers = teachers;
+	}
+
+	public Set<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(Set<Task> tasks) {
+		this.tasks = tasks;
+	}
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
 	}
 }
