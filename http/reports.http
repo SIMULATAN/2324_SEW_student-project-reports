@@ -1,0 +1,13 @@
+GET localhost:8080/api/reports/average-hours-per-task
+
+###
+
+GET localhost:8080/api/reports/list/teacher-reports
+
+###
+
+GET localhost:8080/api/reports/list/hardest-working-students/5
+
+###
+
+GET localhost:8080/api/reports/list/project-reports
